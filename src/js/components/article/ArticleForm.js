@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 import { renderMultiselectCreatableField, renderDateField } from '../forms/FormFields';
-import { articleToRead } from '../../utils/ArticleConverter';
+import { articleToRead, articleTo2Read } from '../../utils/ArticleConverter';
 
 class ArticleForm extends React.Component {
 
@@ -65,14 +65,19 @@ ArticleForm = reduxForm({
   form: 'article-form'
 })(ArticleForm);
 
-ArticleForm = connect(state => ({
-  initialValues: articleToRead(state.article.value)
-}))(ArticleForm);
+/*ArticleForm = connect(state => ({
+  initialValues: articleTo2Read(state.entry.value)
+}))(ArticleForm);*/
 
 ArticleForm.propTypes = {
   onSubmit: PropTypes.func,
-  tagsOptionsData: PropTypes.array,
-  //initialValues: PropTypes.Object
+  tagsOptionsData: PropTypes.array
 };
-
+/*
+initialValues: PropTypes.shape({
+  title: PropTypes.string,
+  descr: PropTypes.string,
+  link: PropTypes.string,
+  date: PropTypes.date
+})*/
 export default ArticleForm;

@@ -8,21 +8,37 @@ class RssEntry extends React.Component {
   constructor(props) {
     super(props);
     this.handleAccept = this.handleAccept.bind(this);
+    this.handleReject = this.handleReject.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleAccept() {
-    const entry = _.omit(this.props, ['onAccept']);
-      console.log('accept it', entry);
+    const entry = _.omit(this.props, ['onAccept', 'onReject']);
     this.props.onAccept(entry);
   }
 
+  handleReject() {
+    const entry = _.omit(this.props, ['onAccept', 'onReject']);
+    this.props.onReject(entry);
+  }
+
+  handleEdit() {
+    this.props.onEdit(_.omit(this.props, ['onAccept', 'onReject', 'onEdit', 'isDraft']));
+  }
+
   render() {
+    const cat = this.props.category || {};
     return (
       <li>
         <h4>{this.props.title} <small>{format(this.props.pubDate)}</small></h4>
         <p>url: {this.props.link}</p>
         {this.props.descr}
-        <div class="pull-right"><Link onClick={this.handleAccept} class="btn btn-primary">Accept it</Link></div>
+
+          {this.props.isDraft && <div class="pull-right">
+            <Link onClick={this.handleAccept} class="btn btn-primary">Accept it</Link>
+            <Link onClick={this.handleReject} class="btn btn-default">Reject it</Link></div>}
+          {!this.props.isDraft && <div class="pull-right"><Link onClick={this.handleEdit} class="btn btn-primary">Edit</Link></div>}
+          <p>Category: <b>{cat.name}</b></p>
       </li>
     )
   }
@@ -32,6 +48,9 @@ RssEntry.propTypes = {
   title: PropTypes.string.isRequired,
   descr: PropTypes.string,
   pubDate: PropTypes.any,
-  onAccept: PropTypes.func.isRequired
+  isDraft: PropTypes.bool,
+  onAccept: PropTypes.func.isRequired,
+  onReject: PropTypes.func.isRequired,
+  onEdit: PropTypes.func
 }
 export default RssEntry;

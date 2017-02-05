@@ -24,7 +24,7 @@ ReactDOM.render(
         <Route path="timeline(/:tagId)" name="timeline" component={TimelinePage} />
         <Route path="article/form(/:articleId)" name="articleForm" component={ArticleEditPage} />
         <Route path="rss/feeds" name="rssFeeds" component={RssFeedsPage} />
-        <Route path="rss/entries/:feedId" name="rssEntries" component={RssEntriesPage} />
+        <Route path="rss/entries/:feedId(/:draft)" name="rssEntries" component={RssEntriesPage} />
         <IndexRedirect to="home"/>
       </Route>
     </Router>

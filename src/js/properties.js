@@ -11,7 +11,9 @@ export default {
   fetchRssEntriesUrl: `${baseUrl}/rss/entries`,
   fetchRssDraftEntriesUrl: `${baseUrl}/rss/entries/draft`,
   saveFeedUrl: `${baseUrl}/rss/feed/save`,
-  acceptRssEntryUrl: `${baseUrl}/rss/entry/accept`
+  acceptRssEntryUrl: `${baseUrl}/rss/entry/accept`,
+  rejectRssEntryUrl: `${baseUrl}/rss/entry/reject`,
+  saveEntryUrl: `${baseUrl}/rss/entry/save`
 }
 
 export const displayDateFormat = 'YYYY-MM-DD';

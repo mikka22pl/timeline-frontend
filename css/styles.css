@@ -5,6 +5,10 @@
 body {
   /*font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;*/
 }
+.entries li {
+  clear: right;
+  border-bottom: 2px solid #ccc;
+}
 .entry,
 .entry > div {
   margin-left: 2em;

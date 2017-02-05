@@ -8,7 +8,11 @@ class LayoutContainer extends React.Component {
     return (
       <div class="pc">
         <div class="menu">
-          <p><Link to="/home">Home</Link> | <Link to="/article/form">Add article</Link> | <Link to="/rss/feeds">RSS Draft Feeds</Link></p>
+          <p>
+            <Link to="/home">Home</Link> |
+            <Link to="/article/form">Add article</Link> |
+            <Link to="/rss/feeds">RSS Feeds</Link>
+          </p>
         </div>
         <div class="container">
           {this.props.children}

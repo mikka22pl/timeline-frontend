@@ -14,7 +14,19 @@ export const articleToRead = (data) => {
     })
   };
 };
-
+export const articleTo2Read = (data) => {
+  if (!data.id || data.id < 1) {
+    return {category: "world"};
+  }
+  return {
+    ...data,
+    date: data.pubDate,
+    category: data.category && data.category.name,
+    tags: (data.tags || []).map(tg => {
+      return {value: tg.id, label: tg.name};
+    })
+  };
+};
 export const articleToWrite = (formData) => {
   return {
     ...formData,
