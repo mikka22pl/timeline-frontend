@@ -12,13 +12,13 @@ class Entry extends React.Component {
   }
 
   render() {
-    const { id, link, name, descr, category, tags, onDate } = this.props;
+    const { id, link, title, descr, category, tags, onDate } = this.props;
 
     return (
       <tr>
         <th>{id}</th>
         <td>{category.name}</td>
-        <td>{name}</td>
+        <td>{title}</td>
         <td><TagsList tags={tags} /></td>
         <td class="text-nowrap">{format(onDate)}</td>
         <td><a href={link}>link</a></td>
@@ -31,7 +31,7 @@ class Entry extends React.Component {
 Entry.propTypes = {
   id: PropTypes.number.isRequired,
   link: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   descr: PropTypes.string,
   category: PropTypes.shape({
     name: PropTypes.string
