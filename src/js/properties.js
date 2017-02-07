@@ -8,6 +8,7 @@ export default {
   saveArticleUrl: `${baseUrl}/article/save`,
   // RSS Feeds
   fetchRssFeedsUrl: `${baseUrl}/rss/feeds`,
+  loadRssEntriesUrl: `${baseUrl}/rss/feed/draft`,
   fetchRssEntriesUrl: `${baseUrl}/rss/entries`,
   fetchRssDraftEntriesUrl: `${baseUrl}/rss/entries/draft`,
   saveFeedUrl: `${baseUrl}/rss/feed/save`,

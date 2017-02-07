@@ -7,11 +7,13 @@ import _ from 'lodash';
 import rssActionsCreators from "../../actions/rss";
 import RssFeed from '../../components/rss/RssFeed';
 import RssFeedForm from '../../components/rss/RssFeedForm';
+import LoadingInd from '../../utils/LoadingInd';
 
 class RssFeedsPage extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onLoadEntries = this.onLoadEntries.bind(this);
   }
 
   componentWillMount() {
@@ -19,20 +21,26 @@ class RssFeedsPage extends React.Component {
   }
 
   onSubmit(formData) {
-    console.log('formData', formData);
     this.props.rssActions.saveFeed(formData);
   }
 
+  onLoadEntries(feedId) {
+    this.props.rssActions.loadDraftEntries(feedId)
+  }
+
   render() {
-    // const tagName = tagsData[tagId];
-    const entries = this.props.rssFeeds.records.map((item) => {
-      return <RssFeed key={item.id} {...item} />
+    const { loading, records } = this.props.rssFeeds;
+
+    const entries = records.map((item) => {
+      return <RssFeed key={item.id} {...item} onLoad={this.onLoadEntries} />
     });
-    // console.log('entries', entries);
     return (
       <div class="feeds">
         <h1>RSS Feeds</h1>
         <RssFeedForm onSubmit={this.onSubmit} />
+        <div>
+          <LoadingInd show={loading} />
+        </div>
         <div>
           {entries}
         </div>
@@ -41,7 +49,7 @@ class RssFeedsPage extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  rssFeeds: state.rssFeeds,
+  rssFeeds: state.rssFeeds
 });
 const mapDispatchToProps = (dispatch) => ({
   rssActions: bindActionCreators(rssActionsCreators, dispatch),
