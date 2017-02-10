@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import { tagsToWrite } from './TagsConverter';
+
 export const articleToRead = (data) => {
   if (!data.id || data.id < 1) {
     return {category: "world"};
@@ -32,9 +34,7 @@ export const articleToWrite = (formData) => {
     ...formData,
     name: formData.title,
     category: { name: formData.category },
-    tags: formData.tags.map((tag) => {
-      return { id: _.isNumber(tag.value) ? tag.value : null, name: tag.label };
-    }),
+    tags: tagsToWrite(formData.tags),
     onDate: formData.date
   };
 };

@@ -7,6 +7,7 @@ export default {
   fetchTagsUrl: `${baseUrl}/tags`,
   saveArticleUrl: `${baseUrl}/article/save`,
   // RSS Feeds
+  fetchLinkedTagsUrl: `${baseUrl}/tags/linked`,
   fetchRssFeedsUrl: `${baseUrl}/rss/feeds`,
   loadRssEntriesUrl: `${baseUrl}/rss/feed/draft`,
   fetchRssEntriesUrl: `${baseUrl}/rss/entries`,

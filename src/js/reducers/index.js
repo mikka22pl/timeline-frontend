@@ -4,6 +4,7 @@ import {reducer as form} from "redux-form";
 import articles from './articles';
 import article from './article';
 import entry from './entry';
+import linkedTags from './linkedTags';
 import rssEntries from './rssEntries';
 import rssFeeds from './rssFeeds';
 import tags from './tags';
@@ -19,5 +20,6 @@ export default combineReducers({
     rssEntries,
     tags,
     tagsOptions,
+    linkedTags,
     timeline
 });

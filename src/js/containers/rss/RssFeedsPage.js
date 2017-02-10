@@ -38,7 +38,7 @@ class RssFeedsPage extends React.Component {
       <div class="feeds">
         <h1>RSS Feeds</h1>
         <RssFeedForm onSubmit={this.onSubmit} />
-        <div>
+        <div class="loading-box">
           <LoadingInd show={loading} />
         </div>
         <div>

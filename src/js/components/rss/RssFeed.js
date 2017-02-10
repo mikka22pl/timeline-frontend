@@ -20,8 +20,8 @@ class RssFeed extends React.Component {
       <div>
         {name} : {category}
         (
-          <Link to={`rss/entries/${id}/1`}>Draft</Link>,
-          <Link to={`rss/entries/${id}`}>Accepted</Link>
+          <Link to={`rss/entries/${id}/1`}>Draft ({this.props.draftCount})</Link>,
+          <Link to={`rss/entries/${id}`}>Accepted ({this.props.acceptedCount})</Link>
         ) : {url} :
         <Link to={`/articles/${id}`}>All articles</Link> |
         <Link onClick={this.loadDraftEntries}>Download</Link> {this.props.loadedCount}
@@ -34,6 +34,8 @@ RssFeed.propTypes = {
   name: PropTypes.string,
   category: PropTypes.string,
   url: PropTypes.string,
+  draftCount: PropTypes.number,
+  acceptedCount: PropTypes.number,
   loadedCount: PropTypes.number
 };
 export default RssFeed;
