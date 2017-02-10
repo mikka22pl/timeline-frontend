@@ -10,7 +10,8 @@ export default class MultiselectCreatableInput extends React.Component {
   }
 
   handleChange(value) {
-      this.props.onChange(value);
+    this.props.customOnChange(value); // {label... value}
+    this.props.onChange(value);
   }
 
   render() {
@@ -28,5 +29,6 @@ export default class MultiselectCreatableInput extends React.Component {
 MultiselectCreatableInput.propTypes = {
     options: PropTypes.any.isRequired,
     name: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
+    customOnChange: PropTypes.func
 };

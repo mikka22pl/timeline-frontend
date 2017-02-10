@@ -12,7 +12,7 @@ class Entry extends React.Component {
   }
 
   render() {
-    const { id, link, title, descr, category, tags, onDate } = this.props;
+    const { id, link, title, descr, category, tags, pubDate } = this.props;
 
     return (
       <tr>
@@ -20,7 +20,7 @@ class Entry extends React.Component {
         <td>{category.name}</td>
         <td>{title}</td>
         <td><TagsList tags={tags} /></td>
-        <td class="text-nowrap">{format(onDate)}</td>
+        <td class="text-nowrap">{format(pubDate)}</td>
         <td><a href={link}>link</a></td>
         <td><Link to={`/article/form/${id}`}>edit</Link></td>
       </tr>
@@ -37,7 +37,7 @@ Entry.propTypes = {
     name: PropTypes.string
   }),
   tags: PropTypes.array.isRequired,
-  onDate: PropTypes.any
+  pubDate: PropTypes.any
 };
 
 export default Entry;

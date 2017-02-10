@@ -42,7 +42,8 @@ class ArticleForm extends React.Component {
             <Field id="fn-tags" name="tags" component={renderMultiselectCreatableField}
                   type="text"
                   className="form-control"
-                  options={this.props.tagsOptionsData} />
+                  options={this.props.tagsOptionsData}
+                  customOnChange={this.props.selectTagsOnChange}/>
           </div>
         </div>
         <div class="form-group">
@@ -70,7 +71,8 @@ ArticleForm = reduxForm({
 
 ArticleForm.propTypes = {
   onSubmit: PropTypes.func,
-  tagsOptionsData: PropTypes.array
+  tagsOptionsData: PropTypes.array,
+  selectTagsOnChange: PropTypes.func
 };
 /*
 initialValues: PropTypes.shape({

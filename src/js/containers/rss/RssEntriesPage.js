@@ -10,6 +10,7 @@ import tagsActionsCreators from '../../actions/tags';
 import RssEntry from '../../components/rss/RssEntry';
 import ArticleForm from '../../components/article/ArticleForm';
 import { articleToWrite, articleTo2Read } from '../../utils/ArticleConverter';
+import { tagsToWrite } from '../../utils/TagsConverter';
 
 class RssEntriesPage extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class RssEntriesPage extends React.Component {
     this.onReject = this.onReject.bind(this);
     this.onEdit = this.onEdit.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.selectTagsOnChange = this.selectTagsOnChange.bind(this);
   }
 
   componentWillMount() {
@@ -42,7 +44,7 @@ class RssEntriesPage extends React.Component {
   }
 
   onEdit(entry) {
-    console.log('entry', entry);
+    // console.log('entry', entry);
     this.props.rssActions.openForm();
     const entryReadable = articleTo2Read(entry);
     this.props.rssActions.readForEdit(entryReadable)
@@ -50,13 +52,19 @@ class RssEntriesPage extends React.Component {
   }
 
   onSubmit(formData) {
-    console.log('formData', formData);
+    // console.log('formData', formData);
     const postData = articleToWrite(formData);
-    console.log('postData', postData);
+    // console.log('postData', postData);
 
     this.props.rssActions.editEntry(postData)
       .then(() => this.props.rssActions.closeForm())
       .then(() => this.props.initializeForm('article-form', {}, true));
+  }
+
+  selectTagsOnChange(values) {
+    if (values && values.length > 1) {
+      this.props.tagsActions.fetchLinkedTags(tagsToWrite(values));
+    }
   }
 
   render() {
@@ -68,13 +76,19 @@ class RssEntriesPage extends React.Component {
       return <RssEntry key={idx} {...item} isDraft={isDraft} onAccept={this.onAccept} onReject={this.onReject} onEdit={this.onEdit}/>
     })
 
+    const linkedTags = this.props.linkedTags.records.map(tag => <span>{tag.name}</span>);
+
     return (
       <div class="feeds">
         <h1>RSS {isDraft ? 'Draft' : ''} Feeds</h1>
+        <div class="tags-linked">
+          {linkedTags}
+        </div>
         {this.props.entry.openForm && <ArticleForm
             onSubmit={this.onSubmit}
             tagsOptionsData={this.props.tagsOptions.options}
-            initializeForm={this.props.initializeForm}/>}
+            selectTagsOnChange={this.selectTagsOnChange}
+            initializeForm={this.props.initializeForm} />}
         <div class="entries">
           <ul>
             {entries}
@@ -90,6 +104,7 @@ const mapStateToProps = (state, ownProps) => ({
   entry: state.entry,
   tags: state.tags,
   tagsOptions: state.tagsOptions,
+  linkedTags: state.linkedTags,
   router: ownProps.router
 });
 const mapDispatchToProps = (dispatch) => ({
