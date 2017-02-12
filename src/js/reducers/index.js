@@ -10,6 +10,7 @@ import rssFeeds from './rssFeeds';
 import tags from './tags';
 import tagsOptions from './tagsOptions';
 import timeline from './timeline';
+import timelines from './timelines';
 
 export default combineReducers({
     form,
@@ -21,5 +22,6 @@ export default combineReducers({
     tags,
     tagsOptions,
     linkedTags,
-    timeline
+    timeline,
+    timelines
 });

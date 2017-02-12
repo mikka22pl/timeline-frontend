@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { renderMultiselectCreatableField, renderDateField } from '../forms/FormFields';
+import { renderMultiselectCreatableField, renderMultiselectField, renderDateField } from '../forms/FormFields';
 
 class ArticleForm extends React.Component {
 
@@ -43,7 +43,16 @@ class ArticleForm extends React.Component {
                   type="text"
                   className="form-control"
                   options={this.props.tagsOptionsData}
-                  customOnChange={this.props.selectTagsOnChange}/>
+                  customOnChange={this.props.selectTagsOnChange} />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fn-timelines" class="col-sm-2 control-label">Timelines:</label>
+          <div class="col-sm-10">
+            <Field id="fn-timelines" name="timelines" component={renderMultiselectField}
+                  type="text"
+                  className="form-control"
+                  options={this.props.timelinesOptionsData} />
           </div>
         </div>
         <div class="form-group">
@@ -72,7 +81,8 @@ ArticleForm = reduxForm({
 ArticleForm.propTypes = {
   onSubmit: PropTypes.func,
   tagsOptionsData: PropTypes.array,
-  selectTagsOnChange: PropTypes.func
+  selectTagsOnChange: PropTypes.func,
+  timelinesOptionsData: PropTypes.array
 };
 /*
 initialValues: PropTypes.shape({

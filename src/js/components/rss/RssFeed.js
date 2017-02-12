@@ -15,10 +15,10 @@ class RssFeed extends React.Component {
   }
 
   render() {
-    const { id, name, category, url } = this.props;
+    const { id, distributor, category, url } = this.props;
     return (
       <div>
-        {name} : {category}
+        {distributor.name} : {category}
         (
           <Link to={`rss/entries/${id}/1`}>Draft ({this.props.draftCount})</Link>,
           <Link to={`rss/entries/${id}`}>Accepted ({this.props.acceptedCount})</Link>
@@ -31,7 +31,14 @@ class RssFeed extends React.Component {
 }
 RssFeed.propTypes = {
   id: PropTypes.number,
-  name: PropTypes.string,
+  distributor: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    language: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  }),
   category: PropTypes.string,
   url: PropTypes.string,
   draftCount: PropTypes.number,

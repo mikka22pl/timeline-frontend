@@ -7,7 +7,7 @@ export const FETCH_TAGS_PENDING = 'FETCH_TAGS_PENDING';
 export const FETCH_TAGS_REJECTED = 'FETCH_TAGS_REJECTED';
 export const FETCH_TAGS_FULFILLED = 'FETCH_TAGS_FULFILLED';
 
-export default () => ({
+export default (languageId) => ({
     type: FETCH_TAGS,
-    payload: axios.get(fetchTagsUrl)
+    payload: axios.get(fetchTagsUrl + '/' + languageId)
 });

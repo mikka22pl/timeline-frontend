@@ -1,5 +1,7 @@
-import fetchTimeline from "./fetchTimeline";
+import fetchTimeline from './fetchTimeline';
+import fetchTimelines from './fetchTimelines';
 
 export default {
-  fetchTimeline
+  fetchTimeline,
+  fetchTimelines
 };

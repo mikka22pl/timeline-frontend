@@ -3,7 +3,6 @@ const baseUrl = 'http://localhost:8080/timeline';
 export default {
   fetchArticleUrl: `${baseUrl}/article`,
   fetchArticlesUrl: `${baseUrl}/articles`,
-  fetchTimelineUrl: `${baseUrl}/articles`,
   fetchTagsUrl: `${baseUrl}/tags`,
   saveArticleUrl: `${baseUrl}/article/save`,
   // RSS Feeds
@@ -15,7 +14,11 @@ export default {
   saveFeedUrl: `${baseUrl}/rss/feed/save`,
   acceptRssEntryUrl: `${baseUrl}/rss/entry/accept`,
   rejectRssEntryUrl: `${baseUrl}/rss/entry/reject`,
-  saveEntryUrl: `${baseUrl}/rss/entry/save`
+  saveEntryUrl: `${baseUrl}/rss/entry/save`,
+  // Timeline
+  fetchTimelineUrl: `${baseUrl}/articles`,
+  fetchTimelinesUrl: `${baseUrl}/timelines`
+
 }
 
 export const displayDateFormat = 'YYYY-MM-DD';

@@ -7,8 +7,10 @@ import _ from 'lodash';
 
 import rssActionsCreators from "../../actions/rss";
 import tagsActionsCreators from '../../actions/tags';
+import timelineActionsCreators from '../../actions/timeline';
 import RssEntry from '../../components/rss/RssEntry';
 import ArticleForm from '../../components/article/ArticleForm';
+import TagSelection from '../../components/tag/TagSelection';
 import { articleToWrite, articleTo2Read } from '../../utils/ArticleConverter';
 import { tagsToWrite } from '../../utils/TagsConverter';
 
@@ -31,8 +33,8 @@ class RssEntriesPage extends React.Component {
       console.log('..entries', draft);
       this.props.rssActions.fetchEntries(feedId);
     }
-    this.props.tagsActions.fetchTags();
     this.props.rssActions.resetEntry();
+    this.props.timelineActions.fetchTimelines();
   }
 
   onAccept(entry) {
@@ -47,6 +49,9 @@ class RssEntriesPage extends React.Component {
     // console.log('entry', entry);
     this.props.rssActions.openForm();
     const entryReadable = articleTo2Read(entry);
+    const languageId = entryReadable.rssFeed.distributor.language.id;
+    this.props.tagsActions.fetchTags(languageId);
+
     this.props.rssActions.readForEdit(entryReadable)
     this.props.initializeForm('article-form', entryReadable, true);
   }
@@ -65,6 +70,7 @@ class RssEntriesPage extends React.Component {
     if (values && values.length > 1) {
       this.props.tagsActions.fetchLinkedTags(tagsToWrite(values));
     }
+    this.setState({tagsSelectValues: values});
   }
 
   render() {
@@ -76,7 +82,7 @@ class RssEntriesPage extends React.Component {
       return <RssEntry key={idx} {...item} isDraft={isDraft} onAccept={this.onAccept} onReject={this.onReject} onEdit={this.onEdit}/>
     })
 
-    const linkedTags = this.props.linkedTags.records.map(tag => <span>{tag.name}</span>);
+    const linkedTags = this.props.linkedTags.records.map(tag => <TagSelection key={tag.id} {...tag} />);
 
     return (
       <div class="feeds">
@@ -87,6 +93,7 @@ class RssEntriesPage extends React.Component {
         {this.props.entry.openForm && <ArticleForm
             onSubmit={this.onSubmit}
             tagsOptionsData={this.props.tagsOptions.options}
+            timelinesOptionsData={this.props.timelinesOptions}
             selectTagsOnChange={this.selectTagsOnChange}
             initializeForm={this.props.initializeForm} />}
         <div class="entries">
@@ -104,12 +111,14 @@ const mapStateToProps = (state, ownProps) => ({
   entry: state.entry,
   tags: state.tags,
   tagsOptions: state.tagsOptions,
+  timelinesOptions: state.timelines.options,
   linkedTags: state.linkedTags,
   router: ownProps.router
 });
 const mapDispatchToProps = (dispatch) => ({
   rssActions: bindActionCreators(rssActionsCreators, dispatch),
   tagsActions: bindActionCreators(tagsActionsCreators, dispatch),
+  timelineActions: bindActionCreators(timelineActionsCreators, dispatch),
   initializeForm: bindActionCreators(initializeActionCreator, dispatch)
 });
 export default connect(mapStateToProps, mapDispatchToProps)(RssEntriesPage);
