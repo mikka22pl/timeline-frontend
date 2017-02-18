@@ -11,7 +11,8 @@ class LayoutContainer extends React.Component {
           <p>
             <Link to="/home">Home</Link> |
             <Link to="/article/form">Add article</Link> |
-            <Link to="/rss/feeds">RSS Feeds</Link>
+            <Link to="/rss/feeds">RSS Feeds</Link> | 
+            <Link to="/timeline/form">Timeline form</Link>
           </p>
         </div>
         <div class="container">

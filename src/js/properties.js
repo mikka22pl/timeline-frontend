@@ -17,8 +17,9 @@ export default {
   saveEntryUrl: `${baseUrl}/rss/entry/save`,
   // Timeline
   fetchTimelineUrl: `${baseUrl}/articles`,
-  fetchTimelinesUrl: `${baseUrl}/timelines`
-
+  fetchTimelinesUrl: `${baseUrl}/timelines`,
+  saveTimelineUrl: `${baseUrl}/timeline/save`,
+  fetchArticlesByTagsUrl: `${baseUrl}/articles/search`
 }
 
 export const displayDateFormat = 'YYYY-MM-DD';
