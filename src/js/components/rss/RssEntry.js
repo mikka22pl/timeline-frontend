@@ -28,6 +28,7 @@ class RssEntry extends React.Component {
 
   render() {
     const cat = this.props.category || {};
+    const timelines = (this.props.timelines || []).map(t => <span>{t.name}</span>)
     return (
       <li>
         <h4>{this.props.title} <small>{format(this.props.pubDate)}</small></h4>
@@ -38,7 +39,7 @@ class RssEntry extends React.Component {
             <Link onClick={this.handleAccept} class="btn btn-primary">Accept it</Link>
             <Link onClick={this.handleReject} class="btn btn-default">Reject it</Link></div>}
           {!this.props.isDraft && <div class="pull-right"><Link onClick={this.handleEdit} class="btn btn-primary">Edit</Link></div>}
-          <p>Category: <b>{cat.name}</b></p>
+          <p>Category: <b>{cat.name}</b> | Timelines: {timelines}</p>
       </li>
     )
   }

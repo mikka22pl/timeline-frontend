@@ -4,9 +4,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from 'lodash';
 
-import timelineActionsCreators from "../actions/timeline";
-import { data, tags as tagsData } from '../data';
-import EntriesList from '../components/EntriesList';
+import timelineActionsCreators from "../../actions/timeline";
+import { data, tags as tagsData } from '../../data';
+import EntriesList from '../../components/EntriesList';
 
 class Timeline extends React.Component {
   constructor(props) {

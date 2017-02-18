@@ -11,7 +11,8 @@ import LayoutContainer from './containers/LayoutContainer';
 import ListPage from './containers/ListPage';
 import RssEntriesPage from './containers/rss/RssEntriesPage';
 import RssFeedsPage from './containers/rss/RssFeedsPage';
-import TimelinePage from './containers/TimelinePage';
+import TimelinePage from './containers/timeline/TimelinePage';
+import TimelineEditPage from './containers/timeline/TimelineEditPage';
 //import '../../node_modules/jquery/dist/jquery';
 //import '../../node_modules/bootstrap/dist/js/bootstrap';
 
@@ -22,7 +23,8 @@ ReactDOM.render(
     <Router history={appHistory}>
       <Route path="/" component={LayoutContainer}>
         <Route path="home" name="home" component={ListPage} />
-        <Route path="timeline(/:tagId)" name="timeline" component={TimelinePage} />
+        <Route path="timeline/tag(/:tagId)" name="timeline" component={TimelinePage} />
+        <Route path="timeline/form(/:timelineId)" name="timelineForm" component={TimelineEditPage} />
         <Route path="articles(/:feedId)" name="allArticles" component={AllArticlesPage} />
         <Route path="article/form(/:articleId)" name="articleForm" component={ArticleEditPage} />
         <Route path="rss/feeds" name="rssFeeds" component={RssFeedsPage} />
